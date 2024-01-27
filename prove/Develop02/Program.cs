@@ -10,6 +10,7 @@ class Program
 
         Console.WriteLine("Welcome to the Journal program!");
         List<string> entries = new List<string>{};
+        //string completeEntry = "";
 
         int response = journal.Start();
         
@@ -30,6 +31,7 @@ class Program
                 string completeEntry = $"Date: {dateText}- Prompt: {entry._prompt} {newentry}";
 
                 entries.Add(completeEntry);
+                
             }
 
             else if (response == 2)
@@ -41,16 +43,22 @@ class Program
             else if (response == 3)
             {
                 //this will save the entries
-                Save save = new Save();
-                save._fileList = entries;
+                SaveFile save = new SaveFile();
+                save._fileList =  entries;
                 save.Ask();
-                save.SaveFile();
+                save.Save();
                 
             }
 
             else if (response == 4)
             {
                 //this will load previous entries
+                SaveFile save = new SaveFile();
+                save.Ask();
+                entries = SaveFile.LoadFile();
+                
+
+
             }
 
             else

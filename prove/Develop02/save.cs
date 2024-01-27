@@ -1,31 +1,51 @@
 //this class will save the journal entries.
 using System.IO;
 
-public class Save
+public class SaveFile()
 {
 
-    public string _fileName;
-    public List<string> _fileList; 
+    public static string _fileName;
+    public List<string> _fileList;
+    
 
     public void Ask()
     {
         Console.WriteLine("What is the File name? ");
         _fileName = Console.ReadLine();
-        //return _fileName;
+        
     }
 
-    public void SaveFile()
+    public void Save()
     {
 
         using (StreamWriter outputFile = new StreamWriter(_fileName))
         {
             
-            outputFile.WriteLine($"{_fileList}");
-    
+            foreach (string s in _fileList)
+            {
+            outputFile.WriteLine(s);
             
+            }
         }
 
     }
 
+    public static List<string> LoadFile()
+    {
+        
+
+        List<string> entries = new List<string>();
+
+        string[] lines = System.IO.File.ReadAllLines(_fileName);
+
+        foreach (string line in lines)
+        {
+            entries.Add(line);
+        }
+
+        return entries;
+
+
+    }
 
 }
