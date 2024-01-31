@@ -13,7 +13,7 @@ class Program
 
         Job job2 = new Job();
         job2._company = "DARPA";
-        job2._jobTitle = "Cheif engineer";
+        job2._jobTitle = "Chief engineer";
         job2._startYear = 2020;
         job2._endYear = 2024;
         

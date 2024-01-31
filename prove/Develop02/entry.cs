@@ -12,8 +12,16 @@ public class Entry
 
     public string Ask()
     {
-        Console.Write($"{_prompt}");
+        
+        _prompt = PromptGenerator.Generate();
+        Console.WriteLine(_prompt);
+        Console.Write(">");
         string response = Console.ReadLine();
         return response;
     }
+
+
+
+
+
 }

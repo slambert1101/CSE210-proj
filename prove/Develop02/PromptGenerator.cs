@@ -3,11 +3,11 @@
 using System.Net;
 using System.Xml.Serialization; 
 
-public class PromptGenerator
+public static class PromptGenerator
 {
    
     
-    public List<string> prompts = new List<string>
+    public static List<string> prompts = new List<string>
     {
         "What was the best part of your day? ",
         "If you had one thing you could do over today, what would it be? ",
@@ -16,7 +16,7 @@ public class PromptGenerator
         "Who was the most interesting person you interacted with today? "
     };
     
-    public string Generate()
+    public static string Generate()
     {
         Random rand = new Random();
 

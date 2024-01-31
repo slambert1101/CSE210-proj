@@ -10,7 +10,7 @@ class Program
 
         Console.WriteLine("Welcome to the Journal program!");
         List<string> entries = new List<string>{};
-        //string completeEntry = "";
+        List<Entry> realEntries = new List<Entry>();
 
         int response = journal.Start();
         
@@ -20,9 +20,9 @@ class Program
             if (response == 1)
             {
                 //this will give user a prompt and they can write
-                PromptGenerator newprompt = new PromptGenerator();
+                
                 Entry entry = new Entry();
-                entry._prompt = newprompt.Generate();
+                
                 string newentry = entry.Ask();
 
                 DateTime theCurrentTime = DateTime.Now;
@@ -37,7 +37,9 @@ class Program
             else if (response == 2)
             {
                 //this will display all journal entries
+                Console.WriteLine();
                 entries.ForEach(Console.WriteLine);
+                Console.WriteLine();
             }
 
             else if (response == 3)
@@ -76,7 +78,6 @@ class Program
 
 
 
-        // Entry entry = new Entry();
-        // entry.Ask();
+    
     }
 }
