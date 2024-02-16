@@ -36,9 +36,15 @@ class Scripture
     {
         return _fullVerse;
     }
-    public Word GetVerse()
+    public string DisplayVerse()
     {
-        return _text[1];
+        List<string> strings = new List<string>();
+        foreach(Word word in _text)
+        {
+            strings.Add(word.GetWord());
+        }
+        string combined = string.Join(" ", strings.ToArray());
+        return _reference.GetReference() + " " + combined;
     }
 
     public void HideRandomWords()

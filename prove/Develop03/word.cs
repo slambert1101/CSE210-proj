@@ -12,6 +12,14 @@ class Word
         this._word = word;
         this._hidden = false;
         this._underscore = "";
+        
+        int i = _word.Length;
+        while(i > 0)
+        {
+            this._underscore+="_";
+            i-=1;
+        }
+
 
     }
 
@@ -30,12 +38,12 @@ class Word
 
     public void Hide()
     {
-        int i = _word.Length;
-        while(i > 0)
-        {
-            _underscore+="_";
-            i-=1;
-        }
+        // int i = _word.Length;
+        // while(i > 0)
+        // {
+        //     _underscore+="_";
+        //     i-=1;
+        // }
         
         _hidden = true;
     }
