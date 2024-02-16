@@ -1,4 +1,5 @@
 using System;
+using System.Net.Quic;
 
 class Program
 {
@@ -8,9 +9,21 @@ class Program
         Scripture scripture = new Scripture(reference, "Trust in the LORD with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.");
         
 
-        string choice = "";
+        Console.Clear();
+        Console.WriteLine(scripture.DisplayVerse());
+            
+        Console.WriteLine();
+
+        Console.WriteLine("Press enter to continue, or type 'quit' to finish:");
+        Console.Write(">");
+        string choice = Console.ReadLine();
+        
+        
         while(choice != "quit")
         {
+            
+            
+            scripture.HideRandomWords();
             
             Console.Clear();
             Console.WriteLine(scripture.DisplayVerse());
@@ -20,13 +33,12 @@ class Program
             Console.WriteLine("Press enter to continue, or type 'quit' to finish:");
             Console.Write(">");
             choice = Console.ReadLine();
-
-            if(choice!= "quit")
+            if(scripture.GetAllHidden() == true)
             {
-                scripture.HideRandomWords();
+                choice = "quit";
             }
-    
 
+            
 
         }
 

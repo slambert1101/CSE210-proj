@@ -8,11 +8,13 @@ class Scripture
     private string _fullVerse;
     private Reference _reference;
 
+    private bool _allHidden;
     public Scripture(Reference reference, string contentOfVerse)
     {
         this._reference = reference;
         //change contentOfVerse into list of Words
         this._fullVerse = contentOfVerse;
+        _allHidden = false;
         List<string> stringList = contentOfVerse.Split(" ").ToList();
 
         
@@ -83,9 +85,15 @@ class Scripture
             foreach(Word word in _text)
             {
                 word.Hide();
+                _allHidden = true;
             }
         }
 
+    }
+
+    public bool GetAllHidden()
+    {
+        return _allHidden;
     }
 
 
