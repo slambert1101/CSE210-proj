@@ -4,6 +4,14 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Develop04 World!");
+        
+        Activity activity = new Activity();
+        BreatingActivity breatingActivity = new BreatingActivity();
+
+        Console.Clear();
+        //activity.Play();
+        breatingActivity.Play();
+        
+
     }
 }
