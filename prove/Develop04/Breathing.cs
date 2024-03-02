@@ -46,6 +46,11 @@ class BreatingActivity : Activity
             Thread.Sleep(1000);
             Console.Write("\b\b\b\b\b\b\b       \b\b\b\b\b\b\b");
 
+            if(DateTime.Now > end)
+            {
+                break;
+            }
+
             Console.Write("Breathe out... ");
             Console.Write("000000O");
             Thread.Sleep(350);

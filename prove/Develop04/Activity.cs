@@ -6,13 +6,9 @@ class Activity
     protected string _activityType;
     protected string _directions;
 
-    
-    
-    
-    public Activity()
-    {
+    protected List<string> _prompts;
 
-    }
+
 
     public void DisplayEndMessage()
     {
@@ -27,30 +23,32 @@ class Activity
         Console.WriteLine(_directions);
     }
 
-    public void Spinner(int i)
+    public void Spinner(int i) // i is how many seconds it will spin
     {
-        
+        i = i * 1000;
         while(i>0)
         {
         
         Console.Write("|");
         Thread.Sleep(400);
         Console.Write("\b \b");
+        i = i-400;
 
         Console.Write("<");
         Thread.Sleep(400);
         Console.Write("\b \b");
+        i = i-400;
 
         Console.Write("-");
         Thread.Sleep(400);
         Console.Write("\b \b");
+        i = i-400;
 
         Console.Write(">");
         Thread.Sleep(400);
         Console.Write("\b \b");
+        i = i-400;
 
-
-        i--;
         }
 
         
@@ -88,14 +86,20 @@ class Activity
         return prompt;
     }
     
-
+    public void CountDownTimer(int i)
+    {
+        while(i>0)
+        {
+            Console.Write(i);
+            Thread.Sleep(1000);
+            Console.Write("\b \b");
+            i--;
+        }
+    }
 
     public virtual void Play()
     {
         Console.Clear();
-        this.DisplayDirections();
-        this.AskTime();
-        this.DisplayEndMessage();
 
     }
     
