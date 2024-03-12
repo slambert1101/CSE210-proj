@@ -8,6 +8,7 @@ class SmartHeater : SmartDevice
     public SmartHeater(string name) : base(name)
     {
         this.SetName(name);
+        this.SetType("heater");
     }
 
     public void SetTemp(int temp)

@@ -4,7 +4,7 @@ abstract class Goal
 {
     private string _name;
     private int _points;
-    private bool _isComplete;
+    protected bool _isComplete;
 
     public Goal(string name, int points)
     {
@@ -13,10 +13,17 @@ abstract class Goal
         _isComplete = false;
     }
 
-    public void Completed()
+    public void SetName(string name)
     {
-        _isComplete = true;
+        _name = name;
     }
 
+    public void SetPoints(int points)
+    {
+        _points = points;
+    }
+
+
+    public abstract void Completed();
 
 }

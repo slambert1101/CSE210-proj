@@ -34,9 +34,15 @@ class Program
         room.AllDevices("on");
         room.ReportPoweredDevices();
         room.PowerDevice("kitchen light", "off");
-        //room.ReportAll();
+        room.ReportAll();
         room.AllLights("off");
+        Console.WriteLine();
+        Thread.Sleep(3000);
         room.ReportPoweredDevices();
+        room.PowerDevice("kitchen light", "");
+        Thread.Sleep(2000);
+        room.ReportLongest();
+
 
     }
 }
