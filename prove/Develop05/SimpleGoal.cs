@@ -1,8 +1,8 @@
 using System;
 
-class SingleGoal : Goal
+class SimpleGoal : Goal
 {
-    public SingleGoal(string name, int points) : base(name, points)
+    public SimpleGoal(string name, string description, int points) : base(name, description, points)
     {
         this.SetName(name);
         this.SetPoints(points);
