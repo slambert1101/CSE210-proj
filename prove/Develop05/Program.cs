@@ -6,25 +6,31 @@ class Program
     static void Main(string[] args)
     {
         Game game = new Game();
-        int option = 0;
         
-        while(option != 6)
+        
+        while(game.GetChoice() != 7)
         {
-            option = game.Menu();
+            game.Menu();
             
-            if(option == 6)
+            if(game.GetChoice() == 7)
             {
                 break;
             }
-            if(option == 1)
+            if(game.GetChoice() == 1)
             {
                 game.AddGoal();
             }
-            if(option ==2)
+            if(game.GetChoice() ==2)
             {
                 game.DisplayAllGoals();
             }
-            if(option == 5)
+            if(game.GetChoice() ==3)
+            {
+                game.SaveFile();
+            }
+
+
+            if(game.GetChoice() == 5)
             {
                 game.RecordEvent();
             }

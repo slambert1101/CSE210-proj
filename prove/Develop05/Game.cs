@@ -1,27 +1,35 @@
 using System;
 using System.Net;
+using System.IO;
 
 class Game
 {
     private List<Goal> _goals = [];
     private int _score;
 
+    private int _choice;
+
     public Game()
     {
         _score = 0;
         _goals = [];
+        _choice = 0;
     }
 
-    public int DisplayScore()
+    public int GetScore()
     {
         return _score;
     }
-    public List<Goal> DisplayGoals()
+    public List<Goal> GetGoals()
     {
         return _goals;
     }
+    public int GetChoice()
+    {
+        return _choice;
+    }
 
-    public int Menu()
+    public void Menu()
     {
         Console.WriteLine($"You have {_score} points.");
         Console.WriteLine();
@@ -31,10 +39,11 @@ class Game
         Console.WriteLine("   3. Save goals");
         Console.WriteLine("   4. Load goals");
         Console.WriteLine("   5. Record event");
-        Console.WriteLine("   6. Quit");
+        Console.WriteLine("   6. Edit goal list");
+        Console.WriteLine("   7. Quit");
         Console.Write("Select a choice from the menu: ");
-        int response = int.Parse(Console.ReadLine());
-        return response;
+        _choice = int.Parse(Console.ReadLine());
+        
     }
 
     public void AddGoal()
@@ -81,14 +90,41 @@ class Game
         int i = 0;
         foreach(Goal goal in _goals)
         {
-            Console.WriteLine($"{i+1}. {this.checkbox(goal.GetStatus())} {_goals[i].GetName()} ({_goals[i].GetDescription()})");
+            
+            Console.Write($"{i+1}. {this.checkbox(goal.GetStatus())} {_goals[i].GetName()} ({_goals[i].GetDescription()})");
+            if(goal is ChecklistGoal)
+            {
+                Console.Write($"  --times completed: {goal.GetCount()}/{goal.GetQuota()}");
+            }
+            Console.WriteLine();
             i+=1;
         }
+        Console.ReadLine();
     }
 
     public void SaveFile()
     {
-
+        Console.Write("What is the name of the file? ");
+        string filename = Console.ReadLine();
+        using(StreamWriter outputFile = new StreamWriter(filename))
+        {
+            outputFile.WriteLine($"{_score}");
+            foreach(Goal goal in _goals)
+            {
+                if(goal is SimpleGoal)
+                {
+                    outputFile.WriteLine($"SimpleGoal:{goal.GetName()}<.>{goal.GetDescription()}<.>{goal.GetPoints()}<.>{goal.GetStatus()}");
+                }
+                else if(goal is EternalGoal)
+                {
+                    outputFile.WriteLine($"EternalGoal:{goal.GetName()}<.>{goal.GetDescription()}<.>{goal.GetPoints()}");
+                }
+                else
+                {
+                    outputFile.WriteLine($"ChecklistGoal:{goal.GetName()}<.>{goal.GetDescription()}<.>{goal.GetPoints()}<.>{goal.GetStatus()}<.>{goal.GetCount()}<.>{goal.GetQuota()}");
+                }
+            }
+        }
     }
 
     public void LoadFile()
@@ -110,11 +146,23 @@ class Game
         }
         Console.Write("Which goal did you accomplish? ");
         int response = int.Parse(Console.ReadLine());
-        _goals[response-1].Completed();
-        _score = _score + _goals[response-1].GetPoints();
-        Console.WriteLine($"Congratulations! you have earned {_goals[response-1].GetPoints()}");
-        Console.WriteLine($"You now have {_score} points.");
-
+        if(_goals[response-1].GetStatus() == false)
+        {
+            _goals[response-1].Completed();
+            _score = _score + _goals[response-1].GetPoints();
+            Console.WriteLine($"Congratulations! you have earned {_goals[response-1].GetPoints()} points.");
+            Console.WriteLine($"You now have {_score} points.");
+            Console.WriteLine();
+            Console.ReadLine();
+        }
+        else if(_goals[response-1].GetStatus() == true)
+        {
+            Console.WriteLine("This goal has already been completed. Please select another goal.");
+        }
+        else
+        {
+            Console.WriteLine("Please input valid option.");
+        }
     }
     
     public string checkbox(bool n)

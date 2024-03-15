@@ -51,4 +51,13 @@ abstract class Goal
     }
     public abstract void Completed();
 
+    public virtual int GetCount()
+    {
+        return 0;
+    }
+    public virtual int GetQuota()
+    {
+        return 0;
+    }
+
 }

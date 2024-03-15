@@ -31,4 +31,14 @@ class ChecklistGoal : Goal
         }
     }
 
+
+    public override int GetCount()
+    {
+        return _count;
+    }
+    public override int GetQuota()
+    {
+        return _quota;
+    }
+
 }

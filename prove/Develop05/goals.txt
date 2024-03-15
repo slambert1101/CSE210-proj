@@ -1,0 +1,2 @@
+20
+SimpleGoal:this is a test<.>yes it is<.>20<.>True
