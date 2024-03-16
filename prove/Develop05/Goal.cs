@@ -49,8 +49,13 @@ abstract class Goal
     {
         return _isComplete;
     }
+    public void SetStatus(bool y)
+    {
+        _isComplete = y;
+    }
     public abstract void Completed();
 
+    public abstract string GetStringRep();
     public virtual int GetCount()
     {
         return 0;

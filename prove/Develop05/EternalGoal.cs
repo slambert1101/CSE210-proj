@@ -14,4 +14,9 @@ class EternalGoal : Goal
         _isComplete = false;
     }
 
+    public override string GetStringRep()
+    {
+        return $"EternalGoal:{this.GetName()}<.>{this.GetDescription()}<.>{this.GetPoints()}<.>{this.GetStatus()}";
+    }
+
 }

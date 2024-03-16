@@ -14,4 +14,9 @@ class SimpleGoal : Goal
         _isComplete = true;
     }
 
+    public override string GetStringRep()
+    {
+        return $"SimpleGoal:{this.GetName()}<.>{this.GetDescription()}<.>{this.GetPoints()}<.>{this.GetStatus()}";
+    }
+
 }

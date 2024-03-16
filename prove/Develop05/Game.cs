@@ -39,8 +39,7 @@ class Game
         Console.WriteLine("   3. Save goals");
         Console.WriteLine("   4. Load goals");
         Console.WriteLine("   5. Record event");
-        Console.WriteLine("   6. Edit goal list");
-        Console.WriteLine("   7. Quit");
+        Console.WriteLine("   6. Quit");
         Console.Write("Select a choice from the menu: ");
         _choice = int.Parse(Console.ReadLine());
         
@@ -76,7 +75,7 @@ class Game
             int quota = int.Parse(Console.ReadLine());
             Console.Write("How many points is the bonus? ");
             int bonus = int.Parse(Console.ReadLine());
-            ChecklistGoal checklistGoal = new ChecklistGoal(name, description, points, bonus, quota);
+            ChecklistGoal checklistGoal = new ChecklistGoal(name, description, points, bonus, 0, quota);
             _goals.Add(checklistGoal);
 
         }
@@ -111,25 +110,34 @@ class Game
             outputFile.WriteLine($"{_score}");
             foreach(Goal goal in _goals)
             {
-                if(goal is SimpleGoal)
-                {
-                    outputFile.WriteLine($"SimpleGoal:{goal.GetName()}<.>{goal.GetDescription()}<.>{goal.GetPoints()}<.>{goal.GetStatus()}");
-                }
-                else if(goal is EternalGoal)
-                {
-                    outputFile.WriteLine($"EternalGoal:{goal.GetName()}<.>{goal.GetDescription()}<.>{goal.GetPoints()}");
-                }
-                else
-                {
-                    outputFile.WriteLine($"ChecklistGoal:{goal.GetName()}<.>{goal.GetDescription()}<.>{goal.GetPoints()}<.>{goal.GetStatus()}<.>{goal.GetCount()}<.>{goal.GetQuota()}");
-                }
+               
+                outputFile.WriteLine(goal.GetStringRep());
+                
             }
         }
     }
 
     public void LoadFile()
     {
+        Console.Write("What is the name of the file? ");
+        _goals = [];
+        string filename = Console.ReadLine();
+        string[] lines = System.IO.File.ReadAllLines(filename);
+        int i = 0;
+        foreach(string line in lines)
+        {
+            if(i == 0)
+            {
+                _score = int.Parse(line);
+            }
+            else
+            {
+                string[] parts = line.Split("<.>");
+                this.CreateGoal(parts);
 
+            }
+            i+=1;
+        }
     }
 
     public void RecordEvent()
@@ -162,6 +170,28 @@ class Game
         else
         {
             Console.WriteLine("Please input valid option.");
+        }
+    }
+    
+    public void CreateGoal(string[] parts)
+    {
+        string[] typeName = parts[0].Split(":");
+        if(typeName[0] == "SimpleGoal")
+        {
+            SimpleGoal simpleGoal = new SimpleGoal(typeName[1], parts[1], int.Parse(parts[2]));
+            simpleGoal.SetStatus(bool.Parse(parts[3]));
+            _goals.Add(simpleGoal);
+        }
+        else if(typeName[0] == "EternalGoal")
+        {
+            EternalGoal eternalGoal = new EternalGoal(typeName[1], parts[1], int.Parse(parts[2]));
+            _goals.Add(eternalGoal);
+        }
+        else
+        {
+            ChecklistGoal checklistGoal = new ChecklistGoal(typeName[1], parts[1], int.Parse(parts[2]), int.Parse(parts[4]), int.Parse(parts[5]), int.Parse(parts[6]));
+            checklistGoal.SetStatus(bool.Parse(parts[3]));
+            _goals.Add(checklistGoal);
         }
     }
     

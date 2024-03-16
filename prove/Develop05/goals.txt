@@ -1,2 +1,4 @@
-20
-SimpleGoal:this is a test<.>yes it is<.>20<.>True
+130
+SimpleGoal:test<.>final test<.>20<.>True
+EternalGoal:eternal goal<.>read scriptures<.>25<.>False
+ChecklistGoal:third goal<.>its a goal<.>50<.>True<.>50<.>3<.>3

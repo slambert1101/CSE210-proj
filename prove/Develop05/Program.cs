@@ -8,11 +8,11 @@ class Program
         Game game = new Game();
         
         
-        while(game.GetChoice() != 7)
+        while(game.GetChoice() != 6)
         {
             game.Menu();
             
-            if(game.GetChoice() == 7)
+            if(game.GetChoice() == 6)
             {
                 break;
             }
@@ -28,11 +28,18 @@ class Program
             {
                 game.SaveFile();
             }
-
+            if(game.GetChoice() ==4)
+            {
+                game.LoadFile();
+            }
 
             if(game.GetChoice() == 5)
             {
                 game.RecordEvent();
+            }
+            else
+            {
+                Console.WriteLine("Please input valid option.");
             }
            
         }

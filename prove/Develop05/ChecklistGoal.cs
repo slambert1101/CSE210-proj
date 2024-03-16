@@ -6,13 +6,13 @@ class ChecklistGoal : Goal
     private int _quota;
 
     private int _count;
-    public ChecklistGoal(string name, string description, int points, int bonus, int quota) : base(name, description, points)
+    public ChecklistGoal(string name, string description, int points, int bonus, int count, int quota) : base(name, description, points)
     {
         this.SetName(name);
         this.SetPoints(points);
         _bonus = bonus;
         _quota = quota;
-        _count = 0;
+        _count = count;
     }
 
 
@@ -40,5 +40,13 @@ class ChecklistGoal : Goal
     {
         return _quota;
     }
+    public int GetBonus()
+    {
+        return _bonus;
+    }
 
+    public override string GetStringRep()
+    {
+        return $"ChecklistGoal:{this.GetName()}<.>{this.GetDescription()}<.>{this.GetPoints()}<.>{this.GetStatus()}<.>{this.GetBonus()}<.>{this.GetCount()}<.>{this.GetQuota()}";
+    }
 }
