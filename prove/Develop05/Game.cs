@@ -39,7 +39,8 @@ class Game
         Console.WriteLine("   3. Save goals");
         Console.WriteLine("   4. Load goals");
         Console.WriteLine("   5. Record event");
-        Console.WriteLine("   6. Quit");
+        Console.WriteLine("   6. Review Completed Goals");
+        Console.WriteLine("   7. Quit");
         Console.Write("Select a choice from the menu: ");
         _choice = int.Parse(Console.ReadLine());
         
@@ -170,6 +171,29 @@ class Game
         else
         {
             Console.WriteLine("Please input valid option.");
+        }
+    }
+
+    public void ReviewGoals()
+    {
+        Console.WriteLine("Your completed goals are:");
+        int i = 0;
+        foreach(Goal goal in _goals)
+        {
+            if(goal.GetStatus() == true)
+            {
+                Console.WriteLine($"{i+1}. {_goals[i].GetName()}");  
+            }
+            i+=1;
+        }
+        Console.Write("Would you like to redo any of these goals? (y/n) ");
+        string choice = Console.ReadLine();
+        if(choice == "y")
+        {
+            Console.Write("Which goal would you like to have uncheked? ");
+            int response = int.Parse(Console.ReadLine());
+            _goals[response-1].SetStatus(false);
+            _goals[response-1].SetCount(0);
         }
     }
     

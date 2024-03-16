@@ -8,11 +8,11 @@ class Program
         Game game = new Game();
         
         
-        while(game.GetChoice() != 6)
+        while(game.GetChoice() != 7)
         {
             game.Menu();
             
-            if(game.GetChoice() == 6)
+            if(game.GetChoice() == 7)
             {
                 break;
             }
@@ -36,6 +36,10 @@ class Program
             if(game.GetChoice() == 5)
             {
                 game.RecordEvent();
+            }
+            if(game.GetChoice() ==6)
+            {
+                game.ReviewGoals();
             }
             else
             {

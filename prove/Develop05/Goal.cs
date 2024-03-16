@@ -64,5 +64,9 @@ abstract class Goal
     {
         return 0;
     }
+    public virtual void SetCount(int i)
+    {
+
+    }
 
 }

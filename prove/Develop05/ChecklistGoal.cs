@@ -36,6 +36,10 @@ class ChecklistGoal : Goal
     {
         return _count;
     }
+    public override void SetCount(int i)
+    {
+        _count = i;
+    }
     public override int GetQuota()
     {
         return _quota;
