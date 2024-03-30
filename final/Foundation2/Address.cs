@@ -15,4 +15,20 @@ class Address
         _country = country;
     }
 
+    public bool InUSA()
+    {
+        if(_country == "USA")
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public string FullAddress()
+    {
+        return $"{_streetAdd}, {_city}, {_province}, {_country}";
+    }
 }

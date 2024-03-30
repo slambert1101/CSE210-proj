@@ -4,11 +4,11 @@ class Product
 {
     private string _name;
     private int _ID;
-    private decimal _price;
+    private double _price;
     private int _quantity;
 
 
-    public Product(string name, int ID, decimal price, int quantity)
+    public Product(string name, int ID, double price, int quantity)
     {
         _name = name;
         _ID = ID;
@@ -17,9 +17,18 @@ class Product
 
     }
 
-    public decimal TotalPrice()
+    public double TotalPrice()
     {
-        decimal total = _price * _quantity;
-        return total;
+        double total = _price * _quantity;
+        return Math.Round(total, 2);
+    }
+
+    public string GetName()
+    {
+        return _name;
+    }
+    public int GetID()
+    {
+        return _ID;
     }
 }
