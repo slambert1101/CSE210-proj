@@ -6,7 +6,7 @@ class Program
     {
         Console.Clear();
         Address address1 = new Address("123 Maple st", "Rexburg", "Id");
-        Lecture lecture = new Lecture("Devotional", "Listen to an uplifting message", "04/02", "11:30am", address1, "John Doe", 80000);
+        Lecture lecture = new Lecture("Devotional", "Listen to an uplifting message", "04/02", "11:30am", address1, "John Doe", 8000);
         lecture.StandardDetails();
         lecture.FullDetails();
         lecture.ShortDescription();
